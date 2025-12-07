@@ -206,16 +206,23 @@ function kirimLaporan() {
     teks += `Materi: ${materi}%0A%0A`;
 
     siswa.forEach((nama, i) => {
-        let st = presensi[i];
-        let simbol = st === "Hadir" ? "✔"
-                   : st === "Sakit" ? "[S]"
-                   : st === "Izin" ? "[i]"
-                   : "[A]";
-        let tampil = st === "Izin" ? `_${nama}_` : nama;
-        let tampil = st === "Sakit" ? `_${nama}_` : nama;
-        let tampil = st === "Absen" ? `*${nama}*` : nama;
-        teks += `${tampil}: ${simbol}%0A`;
-    });
+    let st = presensi[i];
+    let simbol = st === "Hadir" ? "✔"
+               : st === "Sakit" ? "[S]"
+               : st === "Izin" ? "[i]"
+               : "[A]";
+
+    let tampil;
+    if (st === "Absen") {
+        tampil = `*${nama}*`;       // Tebal
+    } else if (st === "Sakit" || st === "Izin") {
+        tampil = `_${nama}_`;       // Miring
+    } else {
+        tampil = nama;              // Normal
+    }
+
+    teks += `${tampil}: ${simbol}%0A`;
+});
 
     window.location.href = "https://wa.me/6282223331745?text=" + teks;
 }

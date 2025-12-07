@@ -211,6 +211,8 @@ function kirimLaporan() {
                    : st === "Sakit" ? "[S]"
                    : st === "Izin" ? "[i]"
                    : "[A]";
+        let tampil = st === "Izin" ? `_${nama}_` : nama;
+        let tampil = st === "Sakit" ? `_${nama}_` : nama;
         let tampil = st === "Absen" ? `*${nama}*` : nama;
         teks += `${tampil}: ${simbol}%0A`;
     });
